@@ -41,3 +41,6 @@ Analysis of GWAS-significant SNPs across AD, PD, ALS, FTD and LBD.
 - Queues the swarm jobs for Get UMAP Parameters and Cluster Consistency.
 - Run full analysis. This needs to be separately run with disease set to None for multi-disease analysis and disease set to 'ad', 'pd', 'als', 'ftd', and 'lbd' for disease-specific analyses.
 - Note that for single disease analyses disease_regression() should be skipped (Disease ~ Cluster regression will fail when only one disease is present).
+<br/><br/>
+## Streamlit
+### https://nih-card-ndd-risk-variant-clustering-app-25rr5g.streamlitapp.com/
