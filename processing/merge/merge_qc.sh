@@ -9,6 +9,6 @@ do
     esac
 done
 
-source /data/$USER/conda/etc/profile.d/conda.sh && conda activate $ENVIRONMENT
+source /insert_conda_env_path/conda.sh && conda activate $ENVIRONMENT
 
 python3 /insert_wd_path/processing/merge/merge_qc.py --geno $INPUT --out $OUTPUT
