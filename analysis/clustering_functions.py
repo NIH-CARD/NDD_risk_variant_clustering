@@ -39,7 +39,7 @@ def set_up(cases, disease=None):
 
 
 
-def umap_transform(X_train, X_test, y_cases, a, b, seed=None, cohorts=None, plot_transform=True):
+def umap_transform(X_train, X_test, y_cases, a, b, seed=None, cohorts=None):
     wd = '/data/CARD/projects/AD_Cluster'
     
     # umap transform train and test data
@@ -49,12 +49,6 @@ def umap_transform(X_train, X_test, y_cases, a, b, seed=None, cohorts=None, plot
     
     # get full umap data
     X_cases_umap = np.append(X_train_umap, X_test_umap, axis=0)
-    
-    # plot when requested
-    if plot_transform:
-        plot(X_cases_umap, y_cases, 'UMAP', X_cases_umap.shape[1], f'{wd}/analysis/figures/umap.html')
-        if cohorts is not None:
-            plot(X_cases_umap, cohorts, 'UMAP', X_cases_umap.shape[1], f'{wd}/analysis/figures/umap_cohorts.html')
     
     return X_train_umap, X_test_umap
 
@@ -163,7 +157,7 @@ def check_cluster_membership(X_train, X_test, y_train, y_test, y_cases, y_ids, a
     # loop through passed num iterations
     for i in range(iterations):
         # umap transform
-        X_train_umap, X_test_umap = umap_transform(X_train, X_test, y_cases, a, b, seed=None, cohorts=None, plot_transform=False)
+        X_train_umap, X_test_umap = umap_transform(X_train, X_test, y_cases, a, b, seed=None, cohorts=None)
         
         # fit clusters
         train_clusters, test_clusters = fit_cluster(cluster, X_train_umap, X_test_umap, y_train, y_test, 'UMAP', f'figures/umap_clusters_{i+1}.html')

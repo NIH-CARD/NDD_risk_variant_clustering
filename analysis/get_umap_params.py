@@ -11,6 +11,8 @@ import statsmodels
 import seaborn as sns
 import sklearn
 import numba
+import umap
+import sys
 
 from clustering_functions import set_up, fit_cluster, expand_cluster_data, disease_regression
 
@@ -80,7 +82,7 @@ if __name__ == '__main__':
     print(sorted_clusters)
     print()
 
-    with open(f'params/no_ukb_umap_params_downsampled_adj_random_state_None.txt', 'w') as f:
+    with open(f'params/umap_params_downsampled_adj_random_state_None.txt', 'w') as f:
         f.write('\nCLUSTERS\n')
         for key in sorted_clusters:
             f.write(f'{key}: {cluster_auc_dict[key]}\n')
