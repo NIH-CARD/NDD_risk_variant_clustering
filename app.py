@@ -1,16 +1,9 @@
-#upload some libraries
-import os
-import sys
-import subprocess
-import numpy as np
 import pandas as pd
 import streamlit as st
 import matplotlib.pyplot as plt
 import plotly.express as px
-import plotly.io as pio
 import seaborn as sns
 from PIL import Image
-import datetime
 
 def plot_3d(labeled_df, color, symbol=None, x='UMAP1', y='UMAP2', z='UMAP3', title=None, x_range=None, y_range=None, z_range=None):
     '''
