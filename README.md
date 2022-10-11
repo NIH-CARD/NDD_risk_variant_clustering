@@ -1,8 +1,6 @@
 # NDD_risk_variant_clustering
 Analysis of GWAS-significant SNPs across AD, PD, ALS, FTD and LBD
-
-
-
+<br/><br/>
 ## Processing
 ### 1. Preprocessing
 - ROSMAP/MayoRNAseq/MSBB: Concatenate individual chromosome vcf files and convert to PLINK binary files.
@@ -31,9 +29,7 @@ Analysis of GWAS-significant SNPs across AD, PD, ALS, FTD and LBD
 
 ### 5. Adjustment
 - GenoML munging and PC adjustment (https://github.com/GenoML/genoml2).
-
-
-
+<br/><br/>
 ## Analysis
 ### 1. Get UMAP Parameters
 - Runs via swarm. Returns a .txt file listing the top parameter combinations based on the Disease ~ Cluster regressions.
