@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-source /data/$USER/conda/etc/profile.d/conda.sh && conda activate
+source /insert_conda_env_path/conda.sh && conda activate
 
 python3 cluster_consistency.py
