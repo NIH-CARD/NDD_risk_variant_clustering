@@ -43,7 +43,7 @@ callrate_out = f'{out_path}_callrate'
 callrate = callrate_prune(geno_path, callrate_out, mind=0.05)
 outputs.append(callrate)
 
-if cohort not in ['FTD','LBD','ALS','UKB','ADSP']:
+if cohort not in ['FTD','LBD','ALS','ADSP']:
     sex_out = f'{callrate_out}_sex'
     sex = sex_prune(callrate_out, sex_out)
     outputs.append(sex)
