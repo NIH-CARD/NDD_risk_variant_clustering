@@ -12,6 +12,6 @@ do
     esac
 done
 
-source /data/$USER/conda/etc/profile.d/conda.sh && conda activate $ENVIRONMENT
+source /insert_conda_env_path/conda.sh && conda activate $ENVIRONMENT
 
 python3 merge_ancestry.py --geno $GENO --ref $REF --ref_labels $LABELS --model $MODEL --out $OUTPUT
