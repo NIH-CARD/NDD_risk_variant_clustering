@@ -154,7 +154,7 @@ if __name__ == '__main__':
     with tables:
 
         if selected_metrics == 'Multi-disease':
-            st.markdown('<p class="small-font">Disease association summary stats per cluster/Frequency per cluster</p>', unsafe_allow_html=True)
+            st.markdown('<p class="small-font">Disease Association Summary Stats per Cluster/Frequency per Cluster</p>', unsafe_allow_html=True)
             cluster_regression_path = 'streamlit/data/full_disease_regression.csv'
             cluster_regression = pd.read_csv(cluster_regression_path)
             cluster_regression['OR'] = cluster_regression['OR'].map('{:.3f}'.format)
@@ -164,7 +164,7 @@ if __name__ == '__main__':
             st.markdown('<p class="tiny-font">* denotes a p-value < 0.05 for the frequency increase/decrease in a certain disease \
                 status per cluster compared to the null estimate of 20%</p>', unsafe_allow_html=True)
 
-            st.markdown('<p class="small-font">PRS association summary stats per cluster</p>', unsafe_allow_html=True)
+            st.markdown('<p class="small-font">PRS Association Summary Stats per Cluster</p>', unsafe_allow_html=True)
             prs_regression_path = 'streamlit/data/full_prs_regression.csv'
             prs_regression = pd.read_csv(prs_regression_path)
             prs_regression['OR'] = prs_regression['OR'].map('{:.3f}'.format)
@@ -178,6 +178,8 @@ if __name__ == '__main__':
             counts = pd.read_csv(f'{counts_path}.csv')
             st.dataframe(counts)
 
+            st.write('#')
+
             st.markdown(f'<p class="small-font">{selected_metrics} PRS regression summary stats per cluster</p>', unsafe_allow_html=True)
             prs_regression_path = f'streamlit/data/{selected_metrics.lower()}_prs_regression' 
             prs_regression = pd.read_csv(f'{prs_regression_path}.csv')
@@ -185,6 +187,8 @@ if __name__ == '__main__':
             prs_regression['BETA'] = prs_regression['BETA'].map('{:.3f}'.format)
             prs_regression['SE'] = prs_regression['SE'].map('{:.3f}'.format)
             st.dataframe(prs_regression)
+
+            st.write('#')
 
             st.markdown(f'<p class="small-font">Cross-disease PRS associations [mean (sd)]</p>', unsafe_allow_html=True)
             prs_assoc_path = f'streamlit/data/{selected_metrics.lower()}_prs_associations' 
