@@ -11,6 +11,8 @@ import statsmodels
 import seaborn as sns
 import sklearn
 import numba
+import umap
+import sys
 
 from clustering_functions import set_up, check_cluster_membership
 
@@ -39,7 +41,7 @@ if __name__ == '__main__':
 
     cases = cases_controls[cases_controls['PHENO'] != 'control'].reset_index(drop=True)
 
-    diseases = ['ad','pd','als','ftd','lbd']
+    diseases = [None,'ad','pd','als','ftd','lbd']
     
     for disease in diseases:
 
@@ -68,5 +70,7 @@ if __name__ == '__main__':
             print(cluster_membership_df.head())
             print(pd.Series(num_clusters).value_counts())
 
-            cluster_membership_df.to_csv(f'bootstrap/cluster_membership_df_{str(iterations)}_rs_None_{str(i+1)}_{disease}.txt', sep='\t', index=False)
-
+            if disease:
+                cluster_membership_df.to_csv(f'bootstrap/cluster_membership_df_{str(iterations)}_rs_None_{str(i+1)}_{disease}.txt', sep='\t', index=False)
+            else:
+                cluster_membership_df.to_csv(f'bootstrap/cluster_membership_df_{str(iterations)}_rs_None_{str(i+1)}.txt', sep='\t', index=False)
