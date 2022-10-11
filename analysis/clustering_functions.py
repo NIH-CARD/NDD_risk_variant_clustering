@@ -40,7 +40,7 @@ def set_up(cases, disease=None):
 
 
 def umap_transform(X_train, X_test, y_cases, a, b, seed=None, cohorts=None):
-    wd = '/data/CARD/projects/AD_Cluster'
+    wd = 'insert_wd_path'
     
     # umap transform train and test data
     umap = UMAP(n_components=3, a=a, b=b, random_state=seed)
