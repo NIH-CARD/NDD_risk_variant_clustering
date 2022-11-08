@@ -111,82 +111,98 @@ if __name__ == '__main__':
     with title:
         st.markdown('<p class="big-font">NDD Risk Variant Clustering</p>', unsafe_allow_html=True)
 
-    card = Image.open(f'streamlit/style/card.jpeg')
-    head_1.image(card, width=120)
-
     ########################  SIDE BAR #########################################
     st.sidebar.markdown('**Stats/Graph Selection**', unsafe_allow_html=True)
-    selected_metrics = st.sidebar.selectbox(label="Disease Selection", options=['Multi-disease','AD','PD','ALS','FTD','LBD'])
+    selected_metrics = st.sidebar.selectbox(label="Disease Selection", options=['Select disease...','Multi-disease','AD','PD','ALS','FTD','LBD'])
 
-    if selected_metrics == 'Multi-disease':
-        data_path = 'streamlit/data/full.csv'
+    st.sidebar.markdown('#')
+    st.sidebar.markdown('#')
+    st.sidebar.markdown('#')
+    st.sidebar.markdown('#')
+    st.sidebar.markdown('#')
+    st.sidebar.markdown('#')
+    st.sidebar.markdown('#')
+    st.sidebar.markdown('#')
+    st.sidebar.markdown('#')
+    st.sidebar.markdown('#')
 
-    else:
-        data_path = f'streamlit/data/{selected_metrics.lower()}.csv'
+    card = Image.open(f'streamlit/style/card.jpeg')
+    st.sidebar.image(card, use_column_width=True)
 
-    data = pd.read_csv(data_path, sep=',')
-    data['cluster'] = data['cluster'].astype(str)
-
-    if selected_metrics == 'Multi-disease':
-        st.markdown(f'<p class="small-font">{selected_metrics} UMAP Embedding Labeled by Disease</p>', unsafe_allow_html=True)
-        plot_3d(data, 'pheno')
-
-        st.markdown(f'<p class="small-font">{selected_metrics} Cluster Membership</p>', unsafe_allow_html=True)
-        plot_3d(data, 'cluster')
-
-    else:
-        st.markdown(f'<p class="small-font">{selected_metrics} Cluster Membership</p>', unsafe_allow_html=True)
-        plot_3d(data,'cluster')
-
-    tables, prs_plot = st.columns([1, 0.5])
-
-    with prs_plot:
-        st.markdown('<p class="small-font">PRS Distributions by Cluster</p>', unsafe_allow_html=True)
-        plot_prs_distributions_by_disease(data)
-
-    with tables:
+    if selected_metrics != 'Select disease...':
 
         if selected_metrics == 'Multi-disease':
-            st.markdown('<p class="small-font">Disease Association Summary Stats per Cluster/Frequency per Cluster</p>', unsafe_allow_html=True)
-            cluster_regression_path = 'streamlit/data/full_disease_regression.csv'
-            cluster_regression = pd.read_csv(cluster_regression_path)
-            cluster_regression['OR'] = cluster_regression['OR'].map('{:.3f}'.format)
-            cluster_regression['BETA'] = cluster_regression['BETA'].map('{:.3f}'.format)
-            cluster_regression['SE'] = cluster_regression['SE'].map('{:.3f}'.format)
-            st.dataframe(cluster_regression, height=384)
-            st.markdown('<p class="tiny-font">* denotes a p-value < 0.05 for the frequency increase/decrease in a certain disease \
-                status per cluster compared to the null estimate of 20%</p>', unsafe_allow_html=True)
-
-            st.markdown('<p class="small-font">PRS Association Summary Stats per Cluster</p>', unsafe_allow_html=True)
-            prs_regression_path = 'streamlit/data/full_prs_regression.csv'
-            prs_regression = pd.read_csv(prs_regression_path)
-            prs_regression['OR'] = prs_regression['OR'].map('{:.3f}'.format)
-            prs_regression['BETA'] = prs_regression['BETA'].map('{:.3f}'.format)
-            prs_regression['SE'] = prs_regression['SE'].map('{:.3f}'.format)
-            st.dataframe(prs_regression, height=384)
+            data_path = 'streamlit/data/full.csv'
 
         else:
-            st.markdown(f'<p class="small-font">{selected_metrics} cluster counts</p>', unsafe_allow_html=True)
-            counts_path = f'streamlit/data/{selected_metrics.lower()}_cluster_counts' 
-            counts = pd.read_csv(f'{counts_path}.csv')
-            st.dataframe(counts)
+            data_path = f'streamlit/data/{selected_metrics.lower()}.csv'
 
-            st.write('#')
+        data = pd.read_csv(data_path, sep=',')
+        data['cluster'] = data['cluster'].astype(str)
 
-            st.markdown(f'<p class="small-font">{selected_metrics} PRS regression summary stats per cluster</p>', unsafe_allow_html=True)
-            prs_regression_path = f'streamlit/data/{selected_metrics.lower()}_prs_regression' 
-            prs_regression = pd.read_csv(f'{prs_regression_path}.csv')
-            prs_regression['OR'] = prs_regression['OR'].map('{:.3f}'.format)
-            prs_regression['BETA'] = prs_regression['BETA'].map('{:.3f}'.format)
-            prs_regression['SE'] = prs_regression['SE'].map('{:.3f}'.format)
-            st.dataframe(prs_regression)
+        if selected_metrics == 'Multi-disease':
+            st.markdown(f'<p class="small-font">{selected_metrics} UMAP Embedding Labeled by Disease</p>', unsafe_allow_html=True)
+            plot_3d(data, 'pheno')
 
-            st.write('#')
+            st.markdown(f'<p class="small-font">{selected_metrics} Cluster Membership</p>', unsafe_allow_html=True)
+            plot_3d(data, 'cluster')
 
-            st.markdown(f'<p class="small-font">Cross-disease PRS associations [mean (sd)]</p>', unsafe_allow_html=True)
-            prs_assoc_path = f'streamlit/data/{selected_metrics.lower()}_prs_associations' 
-            prs_assoc = pd.read_csv(f'{prs_assoc_path}.csv')
-            st.dataframe(prs_assoc)
-            st.markdown('<p class="tiny-font">* denotes a p-value < 0.05 for the deviation from the distribution (mean=0, sd=1) \
-                that the PRS were standardized to', unsafe_allow_html=True)
+        else:
+            st.markdown(f'<p class="small-font">{selected_metrics} Cluster Membership</p>', unsafe_allow_html=True)
+            plot_3d(data,'cluster')
+
+        tables, prs_plot = st.columns([1, 0.5])
+
+        with prs_plot:
+            st.markdown('<p class="small-font">PRS Distributions by Cluster</p>', unsafe_allow_html=True)
+            plot_prs_distributions_by_disease(data)
+
+        with tables:
+
+            if selected_metrics == 'Multi-disease':
+                st.markdown('<p class="small-font">Disease Association Summary Stats per Cluster/Frequency per Cluster</p>', unsafe_allow_html=True)
+                cluster_regression_path = 'streamlit/data/full_disease_regression.csv'
+                cluster_regression = pd.read_csv(cluster_regression_path)
+                cluster_regression['OR'] = cluster_regression['OR'].map('{:.3f}'.format)
+                cluster_regression['BETA'] = cluster_regression['BETA'].map('{:.3f}'.format)
+                cluster_regression['SE'] = cluster_regression['SE'].map('{:.3f}'.format)
+                st.dataframe(cluster_regression, height=384)
+                st.markdown('<p class="tiny-font">* denotes a p-value < 0.05 for the frequency increase/decrease in a certain disease \
+                    status per cluster compared to the null estimate of 20%</p>', unsafe_allow_html=True)
+
+                st.markdown('<p class="small-font">PRS Association Summary Stats per Cluster</p>', unsafe_allow_html=True)
+                prs_regression_path = 'streamlit/data/full_prs_regression.csv'
+                prs_regression = pd.read_csv(prs_regression_path)
+                prs_regression['OR'] = prs_regression['OR'].map('{:.3f}'.format)
+                prs_regression['BETA'] = prs_regression['BETA'].map('{:.3f}'.format)
+                prs_regression['SE'] = prs_regression['SE'].map('{:.3f}'.format)
+                st.dataframe(prs_regression, height=384)
+
+            else:
+                st.markdown(f'<p class="small-font">{selected_metrics} cluster counts</p>', unsafe_allow_html=True)
+                counts_path = f'streamlit/data/{selected_metrics.lower()}_cluster_counts' 
+                counts = pd.read_csv(f'{counts_path}.csv')
+                st.dataframe(counts)
+
+                st.write('#')
+
+                st.markdown(f'<p class="small-font">{selected_metrics} PRS regression summary stats per cluster</p>', unsafe_allow_html=True)
+                prs_regression_path = f'streamlit/data/{selected_metrics.lower()}_prs_regression' 
+                prs_regression = pd.read_csv(f'{prs_regression_path}.csv')
+                prs_regression['OR'] = prs_regression['OR'].map('{:.3f}'.format)
+                prs_regression['BETA'] = prs_regression['BETA'].map('{:.3f}'.format)
+                prs_regression['SE'] = prs_regression['SE'].map('{:.3f}'.format)
+                st.dataframe(prs_regression)
+
+                st.write('#')
+
+                st.markdown(f'<p class="small-font">Cross-disease PRS associations [mean (sd)]</p>', unsafe_allow_html=True)
+                prs_assoc_path = f'streamlit/data/{selected_metrics.lower()}_prs_associations' 
+                prs_assoc = pd.read_csv(f'{prs_assoc_path}.csv')
+                st.dataframe(prs_assoc)
+                st.markdown('<p class="tiny-font">* denotes a p-value < 0.05 for the deviation from the distribution (mean=0, sd=1) \
+                    that the PRS were standardized to', unsafe_allow_html=True)
+
+    else:
+        st.markdown('Put Info Here!')
 
