@@ -124,7 +124,6 @@ if __name__ == '__main__':
     st.sidebar.markdown('#')
     st.sidebar.markdown('#')
     st.sidebar.markdown('#')
-    st.sidebar.markdown('#')
 
     card = Image.open(f'streamlit/style/card.jpeg')
     st.sidebar.image(card, use_column_width=True)
