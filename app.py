@@ -132,7 +132,7 @@ if __name__ == '__main__':
     st.sidebar.image(card, use_column_width=True)
 
     if selected_metrics != 'Introduction':
-        st.markdown('<p class="big-font">Results</p>')
+        st.markdown('<p class="big-font">Results</p>', unsafe_allow_html=True)
         st.markdown('#')
 
         if selected_metrics == 'Multi-disease':
