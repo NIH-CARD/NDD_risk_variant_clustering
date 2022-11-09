@@ -113,9 +113,6 @@ if __name__ == '__main__':
         with open(file_name) as f:
             st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
     local_css(f'streamlit/style/style.css')
-    ####################### HEAD ##############################################
-    st.markdown('<p class="big-font">Genetic risk factor clustering within and across neurodegenerative diseases</p>', 
-                unsafe_allow_html=True)
 
     ########################  SIDE BAR #########################################
     st.sidebar.markdown('**Stats/Graph Selection**', unsafe_allow_html=True)
@@ -135,6 +132,7 @@ if __name__ == '__main__':
     st.sidebar.image(card, use_column_width=True)
 
     if selected_metrics != 'Introduction':
+        st.markdown('<p class="big-font">Results</p>')
         st.markdown('#')
 
         if selected_metrics == 'Multi-disease':
@@ -215,6 +213,8 @@ if __name__ == '__main__':
                         unsafe_allow_html=True)
 
     else:
+        st.markdown('<p class="big-font">Genetic risk factor clustering within and across neurodegenerative diseases</p>', unsafe_allow_html=True)
+
         st.markdown('<p class="small-font">Mathew J. Koretsky, Chelsea Alvarado, Mary B Makarious, Dan Vitale, Kristin Levine, \
                     Anant Dadu, Sonja W. Scholz, Lana Sargent, Faraz Faghri, Hirotaka Iwaki, Cornelis Blauwendraat, Andrew Singleton, \
                     Mike Nalls, Hampton Leonard</p>', unsafe_allow_html=True)
