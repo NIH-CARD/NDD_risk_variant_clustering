@@ -207,7 +207,8 @@ if __name__ == '__main__':
                 st.markdown('<p class="tiny-font">* denotes a p-value < 0.05 for the deviation from the distribution (mean=0, sd=1) \
                     that the PRS were standardized to</p>', unsafe_allow_html=True)
             
-            
+            st.markdown('#')
+            st.markdown('#')
 
             st.markdown('<p class="medium-font">Select Introduction in the selector in the sidebar to return to the home page, \
                         or select another disease to continue exploring the results!</p>', 
