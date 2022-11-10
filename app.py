@@ -209,7 +209,8 @@ if __name__ == '__main__':
             
             
 
-            st.markdown('<p class="medium-font">Select Introduction in the selector in the sidebar to return to the home page!</p>', 
+            st.markdown('<p class="medium-font">Select Introduction in the selector in the sidebar to return to the home page, \
+                        or select another disease to continue exploring the results!</p>', 
                         unsafe_allow_html=True)
 
     else:
