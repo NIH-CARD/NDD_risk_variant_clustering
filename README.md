@@ -1,4 +1,4 @@
-# NDD_risk_variant_clustering
+# NDD Risk Variant Clustering
 Analysis of genome-wide association study (GWAS) significant single-nucleotide polymorphisms (SNPs) across Alzheimer's disease (AD), Parkinson's disease (PD), amyotrophic lateral sclerosis (ALD), frontotemporal dementia (FTD) and Lewy body dementia (LBD).
 <br/><br/>
 ## Processing
