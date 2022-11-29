@@ -115,23 +115,13 @@ if __name__ == '__main__':
     local_css(f'streamlit/style/style.css')
 
     ########################  SIDE BAR #########################################
-    st.sidebar.markdown('**Stats/Graph Selection**', unsafe_allow_html=True)
-    selected_metrics = st.sidebar.selectbox(label="Disease Selection", options=['Introduction','Multi-disease','AD','PD','ALS','FTD','LBD'])
+    st.sidebar.markdown('**Disease Selection**', unsafe_allow_html=True)
+    selected_metrics = st.sidebar.selectbox(label='Disease Selection', label_visibility='collapsed', options=['Home','Multi-disease','AD','PD','ALS','FTD','LBD'])
 
-    st.sidebar.markdown('#')
-    st.sidebar.markdown('#')
-    st.sidebar.markdown('#')
-    st.sidebar.markdown('#')
-    st.sidebar.markdown('#')
-    st.sidebar.markdown('#')
-    st.sidebar.markdown('#')
-    st.sidebar.markdown('#')
-    st.sidebar.markdown('#')
-
-    card = Image.open(f'streamlit/style/card.jpeg')
+    card = Image.open(f'streamlit/style/card-removebg.png')
     st.sidebar.image(card, use_column_width=True)
 
-    if selected_metrics != 'Introduction':
+    if selected_metrics != 'Home':
         st.markdown('<p class="big-font">Results</p>', unsafe_allow_html=True)
         st.markdown('#')
 
@@ -182,6 +172,8 @@ if __name__ == '__main__':
                 prs_regression['SE'] = prs_regression['SE'].map('{:.3f}'.format)
                 st.dataframe(prs_regression, height=384)
 
+                st.markdown('#')
+
             else:
                 st.markdown(f'<p class="medium-font">{selected_metrics} cluster counts</p>', unsafe_allow_html=True)
                 counts_path = f'streamlit/data/{selected_metrics.lower()}_cluster_counts' 
@@ -206,11 +198,25 @@ if __name__ == '__main__':
                 st.dataframe(prs_assoc)
                 st.markdown('<p class="tiny-font">* denotes a p-value < 0.05 for the deviation from the distribution (mean=0, sd=1) \
                     that the PRS were standardized to</p>', unsafe_allow_html=True)
-            
-            st.markdown('#')
-            st.markdown('#')
 
-            st.markdown('<p class="medium-font">Select Introduction in the selector in the sidebar to return to the home page, \
+                if selected_metrics == 'AD' or selected_metrics == 'FTD':
+                    st.markdown('#')
+                    st.markdown('#')
+                    st.markdown('#')
+                    st.markdown('#')
+                    st.markdown('#')
+                
+                else:
+                    st.markdown('#')
+                    st.markdown('#')
+                    st.markdown('#')
+                    st.markdown('#')
+                    st.markdown('#')
+                    st.markdown('#')
+                    st.markdown('#')
+                    st.markdown('#')
+
+            st.markdown('<p class="medium-font">Please use the selector in the sidebar to return to the home page \
                         or select another disease to continue exploring the results!</p>', 
                         unsafe_allow_html=True)
 
